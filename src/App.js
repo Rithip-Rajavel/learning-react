@@ -1,7 +1,8 @@
 //import logo from './logo.svg';
 import './App.css';
 import Test from './components/components.js';
-
+import React from 'react';
+import { useState } from 'react';
 import Login from './components/Login.js';
 
 const Navbar =()=>{
@@ -78,7 +79,40 @@ function Garage(){
     </>
   );
 }
+
+function MyForm(){
+  const [Mycars,setMycars] = useState("BMW");
+  const [hoverStyle, setHoverStyle] = useState({});
+
+  const HandleChange = (e) =>{
+    setMycars(e.target.value);
+  }
+
+  return (
+    <form>
+      <label>
+        select your car:
+      </label>
+      <select value={Mycars} onChange={HandleChange} 
+      onMouseOver={() => setHoverStyle({ color: "red" })}
+      onMouseOut={() => setHoverStyle({})}
+      style={hoverStyle}>
+        <option value="BMW">BMW</option>
+        <option value="Mercedes">Mercedes</option>
+        <option value="Audi">Audi</option>
+        <option value="Toyota">Toyota</option>
+        <option value="Honda">Honda</option>
+        <option value="Ford">Ford</option>
+        <option value="Chevrolet">Chevrolet</option>
+        <option value="Nissan">Nissan</option>
+        <option value="Hyundai">Hyundai</option>
+      </select>
+    </form>
+  )
+}
 function App() {
+
+  
   const carInfo = {name:"BMW" ,model :"X5", year:2023};
   return (
     <div >
@@ -90,7 +124,8 @@ function App() {
       <List />
       <Football />
       <Garage />
-      <Login />
+      {/* <Login /> */}
+      <MyForm />
     </div>
   );
 }
