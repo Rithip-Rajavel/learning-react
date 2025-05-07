@@ -1,7 +1,7 @@
 //import logo from './logo.svg';
 import './App.css';
 import Test from './components/components.js';
-
+import React from 'react';
 import Login from './components/Login.js';
 
 const Navbar =()=>{
@@ -78,6 +78,42 @@ function Garage(){
     </>
   );
 }
+//Probs
+class Democomponent extends React.Component{
+  render(){
+    return (
+      <div>
+        <h2>this is a demo component using props {this.props.name}</h2>
+        <h3>this is also a demo using props {this.props.demo}</h3>
+      </div>
+    )
+  }
+}
+
+class Parent extends React.Component{
+  render(){
+    return (
+      <div>
+        <h3>This is parent comeponent</h3>
+        <Child name = "User" id = "5555" />
+      </div>
+    )
+  }
+}
+
+class Child extends React.Component{
+  render(){
+    return(
+      <div>
+        <h3>This is child component</h3>
+        <h4>Child name is {this.props.name}</h4>
+        <h4>Child id is {this.props.id}</h4>
+      </div>
+    )
+  }
+}
+
+//Execution starts here
 function App() {
   const carInfo = {name:"BMW" ,model :"X5", year:2023};
   return (
@@ -91,6 +127,9 @@ function App() {
       <Football />
       <Garage />
       <Login />
+      <Democomponent name = "Ben" demo = {10} />
+      <Parent />
+    
     </div>
   );
 }
