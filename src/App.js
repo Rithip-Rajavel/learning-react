@@ -4,6 +4,10 @@ import Test from './components/components.js';
 import React from 'react';
 import { useState } from 'react';
 import Login from './components/Login.js';
+import Garage from './components/Garage.js';
+import { Provider } from './components/Context.js';
+import WelcomePage from './components/Welcomepage.js';
+
 
 const Navbar =()=>{
   return <h1>This is navbar</h1>
@@ -58,27 +62,27 @@ function Cars(props){
   )
 }
 
-function Garage(){
-  const car = [
-    {id:1, brand:"BMW"},
-    {id:2, brand:"Mercedes"},
-    {id:3, brand:"Audi"},
-    {id:4, brand:"Toyota"},
-    {id:5, brand:"Honda"},
-    {id:6, brand:"Ford"},
-    {id:7, brand:"Chevrolet"},
-    {id:8, brand:"Nissan"},
-    {id:9, brand:"Hyundai"},
-  ];
-  return (
-    <>
-    <h2>Who live in my garage?</h2>
-    <ul>
-      {car.map((cars)=><Cars key ={cars.id} name={cars} />)}
-    </ul>
-    </>
-  );
-}
+// function Garage(){
+//   const car = [
+//     {id:1, brand:"BMW"},
+//     {id:2, brand:"Mercedes"},
+//     {id:3, brand:"Audi"},
+//     {id:4, brand:"Toyota"},
+//     {id:5, brand:"Honda"},
+//     {id:6, brand:"Ford"},
+//     {id:7, brand:"Chevrolet"},
+//     {id:8, brand:"Nissan"},
+//     {id:9, brand:"Hyundai"},
+//   ];
+//   return (
+//     <>
+//     <h2>Who live in my garage?</h2>
+//     <ul>
+//       {car.map((cars)=><Cars key ={cars.id} name={cars} />)}
+//     </ul>
+//     </>
+//   );
+// }
 
 function MyForm(){
   const [Mycars,setMycars] = useState("BMW");
@@ -94,8 +98,7 @@ function MyForm(){
         select your car:
       </label>
       <select value={Mycars} onChange={HandleChange} 
-      onMouseOver={() => setHoverStyle({ color: "red" })}
-      onMouseOut={() => setHoverStyle({})}
+
       style={hoverStyle}>
         <option value="BMW">BMW</option>
         <option value="Mercedes">Mercedes</option>
@@ -110,13 +113,33 @@ function MyForm(){
     </form>
   )
 }
+//List
+
+const Items =() =>{
+  const COMPANY = ["GEEKS", "FOR", "GEEKS"];
+  const handleClick = (COMPANY)=>{
+    alert(`You clicked ${COMPANY}`);
+  }
+
+  return (
+    <div>
+      <h1>List of Companies</h1>
+      <ul>
+        {COMPANY.map((company,index) => (
+          <button key={index} onClick={(() =>{handleClick(company)})}>{company}</button>
+        ))}
+      </ul>
+    </div>
+  )
+}
+//Context API
 function App() {
 
   
   const carInfo = {name:"BMW" ,model :"X5", year:2023};
   return (
     <div >
-      <Navbar />
+      {/* <Navbar />
       <Sidebar />
       <Articallist />
       <Test />
@@ -124,8 +147,14 @@ function App() {
       <List />
       <Football />
       <Garage />
-      {/* <Login /> */}
+      {/* <Login /> }
       <MyForm />
+      <Items /> */}
+      <Garage />
+      <Provider value ={{name:"John", id:123}}>
+        <WelcomePage />
+      </Provider>
+      
     </div>
   );
 }
